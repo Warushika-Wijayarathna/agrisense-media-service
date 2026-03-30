@@ -35,7 +35,7 @@ media:
     project-id: ${GCP_PROJECT_ID:}
     credentials-path: ${GOOGLE_APPLICATION_CREDENTIALS:}
     object-prefix: ${MEDIA_STORAGE_OBJECT_PREFIX:agrisense-media}
-    public-base-url: ${MEDIA_STORAGE_PUBLIC_BASE_URL:https://storage.googleapis.com/${MEDIA_STORAGE_BUCKET}}
+    public-base-url: ${MEDIA_STORAGE_PUBLIC_BASE_URL:}
     upload-dir: uploads
 
 management:
