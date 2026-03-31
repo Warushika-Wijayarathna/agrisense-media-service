@@ -2,6 +2,7 @@ package com.agrisense.mediaservice.media;
 
 import jakarta.validation.constraints.NotNull;
 import java.net.URI;
+import java.util.List;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -30,6 +31,11 @@ public class MediaController {
     public ResponseEntity<MediaResponse> upload(@RequestParam("file") @NotNull MultipartFile file) {
         MediaResponse response = mediaService.upload(file);
         return ResponseEntity.created(URI.create("/media/" + response.id())).body(response);
+    }
+
+    @GetMapping
+    public List<MediaResponse> listMedia() {
+        return mediaService.listMedia();
     }
 
     @GetMapping("/{id}")

@@ -3,6 +3,7 @@ package com.agrisense.mediaservice.media;
 import com.agrisense.mediaservice.shared.ResourceNotFoundException;
 import com.agrisense.mediaservice.shared.StorageException;
 import java.time.Instant;
+import java.util.List;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,6 +37,14 @@ public class MediaService {
         mediaAsset.setUploadedAt(Instant.now());
 
         return MediaResponse.from(mediaAssetRepository.save(mediaAsset));
+    }
+
+    @Transactional(readOnly = true)
+    public List<MediaResponse> listMedia() {
+        return mediaAssetRepository.findAllByOrderByUploadedAtDesc()
+                .stream()
+                .map(MediaResponse::from)
+                .toList();
     }
 
     @Transactional(readOnly = true)
